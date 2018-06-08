@@ -3,4 +3,6 @@
 
 <% if current_user %>
   <%= image_tag(current_user.avatar_url, class: 'pro-i') %>
+  <br>
+  Name: <%= current_user.name %>
 <% end %>
