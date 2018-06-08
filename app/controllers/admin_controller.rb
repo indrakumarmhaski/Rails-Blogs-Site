@@ -7,8 +7,8 @@ class AdminController < ApplicationController
   end
 
   def destroy
-    if(current_user.id == @user.id)
-        redirect_to admin_index_path
+    if( @user.role == :admin)
+        redirect_to admin_index_path, notice: "He is an admin, can't be deleted."
     else
         @user.destroy!
         redirect_to admin_index_path, notice: "User #{@user.name} was successfully deleted."
