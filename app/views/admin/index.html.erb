@@ -1,0 +1,26 @@
+<h1 class="text-center">List of all users</h1>
+
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Profile Image</th>
+      <th colspan="1"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.name %></td>
+        <td><%= user.email %></td>
+        <td><%= image_tag(user.avatar_url, class: 'pro-i') %></td>
+        <td><%= link_to 'Destroy', admin_destroy_path(user: user) , data: { confirm: 'Are you shure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+

@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'admin/index'
+  get 'admin/destroy'
   devise_for :users
   root to: 'pages#home'
   get 'pages/home'

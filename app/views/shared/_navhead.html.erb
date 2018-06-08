@@ -14,7 +14,13 @@
       </li>
       <li class="nav-item">
        <% if current_user %>
-        <%= link_to 'Account', edit_user_registration_path, class: 'nav-link active' %>
+        <%= link_to 'My Account', edit_user_registration_path, class: 'nav-link active' %>
+       <% end %>
+      </li>
+      <li class="nav-item">
+       <% if current_user %>
+        <%= link_to 'Manage Users', admin_index_path,
+         class: 'nav-link active' if logged_in?(:admin) %>
        <% end %>
       </li>
     </ul>
