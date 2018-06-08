@@ -1,7 +1,7 @@
 <h1 class="text-center">List of all users</h1>
 
 
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>Name</th>
@@ -16,7 +16,7 @@
       <tr>
         <td><%= user.name %></td>
         <td><%= user.email %></td>
-        <td><%= image_tag(user.avatar_url, class: 'pro-i') %></td>
+        <td><%= image_tag(user.avatar_url, class: 'pro-i-index') %></td>
         <td><%= link_to 'Destroy', admin_destroy_path(user: user) , data: { confirm: 'Are you shure?' } %></td>
       </tr>
     <% end %>
