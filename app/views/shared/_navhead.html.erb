@@ -26,7 +26,7 @@
       <li class="nav-item">
        <% if current_user %>
         <%= link_to 'My blogs', blogs_path,
-         class: 'nav-link active' if logged_in?(:admin) %>
+         class: 'nav-link active' if logged_in?(:admin, :user) %>
        <% end %>
       </li>
     </ul>

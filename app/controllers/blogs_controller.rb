@@ -1,6 +1,7 @@
 class BlogsController < ApplicationController
   before_action :set_blog, only: [:show, :edit, :update, :destroy]
-  access all: [:index, :show, :new, :edit, :create, :update, :destroy], user: :all
+
+  access all: [], user: :all, admin: :all
 
   # GET /blogs
   def index
@@ -14,6 +15,11 @@ class BlogsController < ApplicationController
 
   # GET /blogs/1
   def show
+    if @blog.user.id == current_user.id  
+
+    else
+      redirect_to blogs_path, notice: 'This blog does not belongs to you.'
+    end
   end
 
   # GET /blogs/new
@@ -44,17 +50,25 @@ class BlogsController < ApplicationController
 
   # PATCH/PUT /blogs/1
   def update
-    if @blog.update(blog_params)
-      redirect_to @blog, notice: 'Blog was successfully updated.'
+    if @blog.user.id == current_user.id
+      if @blog.update(blog_params)
+        redirect_to @blog, notice: 'Blog was successfully updated.'
+      else
+        render :edit
+      end
     else
-      render :edit
+      redirect_to edit_blog_path, notice: 'This blog does not belongs to you.'
     end
   end
 
   # DELETE /blogs/1
   def destroy
-    @blog.destroy
-    redirect_to blogs_url, notice: 'Blog was successfully destroyed.'
+    if @blog.user.id == current_user.id  
+      @blog.destroy
+      redirect_to blogs_url, notice: 'Blog was successfully destroyed.'
+    else
+      redirect_to edit_blog_path, notice: 'This blog does not belongs to you.'
+    end
   end
 
   private
