@@ -4,7 +4,12 @@ class BlogsController < ApplicationController
 
   # GET /blogs
   def index
-    @blogs = Blog.all
+    if current_user
+      @user = User.find(current_user.id)
+    else
+      redirect_to blogs_path and return
+    end
+    @blogs = @user.blogs
   end
 
   # GET /blogs/1
@@ -23,6 +28,12 @@ class BlogsController < ApplicationController
   # POST /blogs
   def create
     @blog = Blog.new(blog_params)
+
+    if current_user
+      @blog.user_id = current_user.id
+    else
+      redirect_to blogs_path and return
+    end
 
     if @blog.save
       redirect_to @blog, notice: 'Blog was successfully created.'
