@@ -5,4 +5,8 @@ class PagesController < ApplicationController
 
   def about
   end
+
+  def allblogs
+    @blogs = Blog.order(created_at: :desc).page(params[:page]).per(10)
+  end
 end

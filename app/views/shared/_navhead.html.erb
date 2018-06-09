@@ -29,6 +29,9 @@
          class: 'nav-link active' if logged_in?(:admin, :user) %>
        <% end %>
       </li>
+      <li class="nav-item">
+        <%= link_to 'All blogs', pages_allblogs_path, class: 'nav-link active' %>
+      </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
       <% if current_user %>
