@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :blogs
   get 'admin/index'
   get 'admin/destroy'
   devise_for :users
