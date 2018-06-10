@@ -1,42 +1,57 @@
-<p id="notice"><%= notice %></p>
+      <div class="jumbotron p-3 p-md-5 text-white bg-dark" style="border-radius: 0em !important;">
+        <div class="row">
+          <div class="col-md-6 px-0">
+            <h2> <%=  @blog.description %> </h2>
+            <% if logged_in?(:admin,:user) %>
+              <%  if @blog.user.id == current_user.id %>
+                <%= link_to 'Destroy Blog', @blog, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %> 
+                <%= link_to 'Edit Blog', edit_blog_path(@blog), class: 'btn btn-primary' %>
+              <% else %>
+                <%= link_to 'Create your own blog!', new_blog_path, class: 'btn btn-primary' %>
+              <% end %>
+            <% else %>
+              <%= link_to 'Create your own blog!',new_user_session_path ,class: 'btn btn-primary' %>
+            <% end %>
+          </div>
+          <div class="col-md-6 px-0">
+            <%= image_tag(@blog.mainimg_url, class: 'float-right show-img img-thumbnail ') %>
+          </div>
+        </div>
+      </div>
 
-<p>
-  <strong>Title:</strong>
-  <%= @blog.title %>
-</p>
+    <main role="main" class="container">
+      <div class="row">
+        <div class="col-md-8 blog-main">
+          <div class="blog-post">
+            <h2 class="blog-post-title"> <%= @blog.title %> </h2>
+            <p class="blog-post-meta"> <%= @blog.created_at.to_s(:long) %> by: <%= @blog.user.name %> </p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @blog.description %>
-</p>
+             <em> <%= @blog.content %> </em> 
 
-<p>
-  <strong>Content:</strong>
-  <%= @blog.content %>
-</p>
+            <hr>
 
-<p>
-  <strong>Thumbimg:</strong>
-  <%= @blog.thumbimg %>
-</p>
-
-<p>
-  <strong>Mainimg:</strong>
-  <%= @blog.mainimg %>
-</p>
-
-<%  if logged_in?(:admin,:user) %>
-  <%= link_to 'Destroy', @blog, method: :delete, data: { confirm: 'Are you sure?' } %> |
-  <%= link_to 'Edit', edit_blog_path(@blog) %> |
-  <%= link_to 'Back', blogs_path %>
-  <br>
-<% end %>
+            <h2>Comments</h2>
+            <div id="comments">
+   	            <%= render @blog.comments %>
+            </div>
+            <%= render 'comments/new',post: @blog if logged_in?(:admin,:user) %>
 
 
 
-<h2>Comments</h2>
-   <div id="comments">
-   	  <%= render @blog.comments %>
-   </div>
+          </div><!-- /.blog-post -->
 
-<%= render 'comments/new',post: @blog if logged_in?(:admin,:user) %>
+        </div><!-- /.blog-main -->
+
+        <aside class="col-md-4 blog-sidebar">
+          <div class="p-3 mb-3 bg-light rounded">
+            <h4 class="font-italic">About Author</h4>
+            <p class="mb-0"> <%= @blog.user.about %> </p>
+          </div>
+        </aside><!-- /.blog-sidebar -->
+
+      </div><!-- /.row -->
+
+    </main><!-- /.container -->
+
+
+

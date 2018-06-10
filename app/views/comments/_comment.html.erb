@@ -1,4 +1,6 @@
-<p> <%= comment.comment %> -- <%= comment.created_at.to_s(:long) %> 
+<p> <%= comment.comment %> 
   <br>
-  by: <%= comment.user.name %>
+    ~ <%= comment.user.name %>. 
+  <br>
+  <%= comment.created_at.to_s(:long) %> 
 </p>

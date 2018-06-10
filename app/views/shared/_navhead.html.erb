@@ -10,11 +10,6 @@
       </li>
       <li class="nav-item">
        <% if current_user %>
-        <%= link_to 'My Account', edit_user_registration_path, class: 'nav-link active' %>
-       <% end %>
-      </li>
-      <li class="nav-item">
-       <% if current_user %>
         <%= link_to 'Manage Users', admin_index_path,
          class: 'nav-link active' if logged_in?(:admin) %>
        <% end %>
@@ -30,6 +25,13 @@
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <% if current_user %>
+            <%= link_to "#{ current_user.name }", edit_user_registration_path, class: 'nav-link active' %>
+          <% end %>
+        </li>
+      </ul>
       <% if current_user %>
           <%= link_to "LogOut",destroy_user_session_path, method: :delete, class: "btn btn-danger my-2 my-sm-0"%>   
       <% else %>
