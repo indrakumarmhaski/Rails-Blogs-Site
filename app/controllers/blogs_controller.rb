@@ -1,7 +1,7 @@
 class BlogsController < ApplicationController
   before_action :set_blog, only: [:show, :edit, :update, :destroy]
 
-  access all: [], user: :all, admin: :all
+  access all: [:show], user: :all, admin: :all
 
   # GET /blogs
   def index
@@ -15,11 +15,7 @@ class BlogsController < ApplicationController
 
   # GET /blogs/1
   def show
-    if @blog.user.id == current_user.id  
 
-    else
-      redirect_to blogs_path, notice: 'This blog does not belongs to you.'
-    end
   end
 
   # GET /blogs/new
