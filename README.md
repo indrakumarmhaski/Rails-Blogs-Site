@@ -1,24 +1,18 @@
-# README
+# Blog-App
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a rails web application in which you can create your own blog! and other 
+outhorized users can make comment on your blog, and all the world can see your 
+blogs!
 
-Things you may want to cover:
+A small description:
 
-* Ruby version
+* Ruby version: 2.5.1
 
-* System dependencies
+* Database: mysql
 
-* Configuration
+* A user can create n number of blogs.
 
-* Database creation
+* The admin can manage all the users.
 
-* Database initialization
+* A user can comment on any blog.
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
