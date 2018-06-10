@@ -18,5 +18,6 @@ class User < ApplicationRecord
   validates :name,:avatar, presence: true
 
   has_many :blogs,dependent: :destroy
+  has_many :comments,dependent: :destroy
 
 end

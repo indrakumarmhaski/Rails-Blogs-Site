@@ -10,7 +10,7 @@ class BlogsController < ApplicationController
     else
       redirect_to blogs_path and return
     end
-    @blogs = @user.blogs.page(params[:page]).per(10)
+    @blogs = @user.blogs.order(created_at: :desc).page(params[:page]).per(10)
   end
 
   # GET /blogs/1
