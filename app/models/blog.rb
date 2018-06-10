@@ -5,4 +5,6 @@ class Blog < ApplicationRecord
     mount_uploader :thumbimg, BlogimagesUploader 
     mount_uploader :mainimg, BlogimagesUploader 
 
+    validates :title,:description,:content,:thumbimg,:mainimg, presence: true
+
 end
