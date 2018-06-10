@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  resources :blogs
+  
+  resources :blogs do
+    resources :comments
+  end
   get 'admin/index'
   get 'admin/destroy'
   devise_for :users
